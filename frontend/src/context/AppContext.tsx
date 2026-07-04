@@ -19,14 +19,16 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
     async function fetchUser() {
         try {
+            setLoading(true);
             const token = localStorage.getItem("token");
             const { data } = await axios.get(`${authService}/api/auth/me`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            setUser(data.user);
+            setUser(data);
             setIsAuth(true);
+            setLoading(false);
 
         } catch (error) {
             console.log(error);

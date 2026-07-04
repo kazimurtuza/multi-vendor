@@ -8,9 +8,11 @@ import { AppProvider } from './context/AppContext.tsx';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <GoogleOAuthProvider clientId="851155076921-dgqu7ljrvb6qt1g4stfjbq0enra998h0.apps.googleusercontent.com">
-      <AppProvider> <App /> </AppProvider>
+      <AppProvider>
+        <App />
+      </AppProvider>
     </GoogleOAuthProvider>
     <div>
-    </div> 
+    </div>
   </StrictMode>,
 ) 

@@ -5,12 +5,14 @@ import { authService } from "../main";
 import toast from "react-hot-toast";
 import { useGoogleLogin } from '@react-oauth/google';
 import { FcGoogle } from "react-icons/fc";
+import { useAppData } from "../context/AppContext";
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { setUser, setIsAuth } = useAppData();
     const responseGoogle = async (authResult: any) => {
-        console.log('authResult = ',authResult)
+        console.log('authResult = ', authResult)
         setLoading(true)
         try {
             const result = await axios.post(`${authService}/api/auth/login`, {
@@ -18,6 +20,8 @@ const Login = () => {
             })
             console.log(result)
             localStorage.setItem('token', result.data.token)
+            setUser(result.data.user);
+            setIsAuth(true);
             toast.success(result.data.message)
             setLoading(false)
             navigate("/")
@@ -25,7 +29,6 @@ const Login = () => {
             console.log(error)
             toast.error('Problem while login');
             setLoading(false)
-
         }
 
     }

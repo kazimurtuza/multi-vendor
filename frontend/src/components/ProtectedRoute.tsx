@@ -9,6 +9,8 @@ const ProtectedRoute = () => {
     if (!isAuth) {
         return <Navigate to={'/login'} replace />
     }
+
+    console.log(location.pathname);
     if (!user?.role && location.pathname !== "/select-role") {
         return <Navigate to={'/select-role'} replace />
     }
