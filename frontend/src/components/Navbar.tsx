@@ -27,23 +27,17 @@ const Navbar = () => {
     }, [search])
 
     return (
-
         <nav className="w-full bg-white shadow-sm border-b sticky top-0 z-50">
-
             <div className="max-w-7xl mx-auto h-16 px-5 flex items-center justify-between">
 
                 {/* Logo */}
-
                 <div className="flex items-center gap-2 cursor-pointer">
-
                     <FcShop size={36} />
-
                     <Link to="/">
                         <h1 className="text-2xl font-bold text-gray-800">
                             Food<span className="text-orange-500">Hub</span>
                         </h1>
                     </Link>
-
                 </div>
 
                 {/* Search */}
@@ -57,15 +51,10 @@ const Navbar = () => {
                             <FcSearch size={22} />
 
                             <input
-
                                 type="text"
-
                                 placeholder="Search food..."
-
                                 className="w-full bg-transparent outline-none px-2"
-
                                 value={search}
-
                                 onChange={(e) => setSearch(e.target.value)}
 
                             />
@@ -93,9 +82,7 @@ const Navbar = () => {
                         <FcShipped size={32} />
 
                         <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-
                             2
-
                         </span>
 
                     </button>
