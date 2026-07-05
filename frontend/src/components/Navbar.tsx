@@ -9,7 +9,7 @@ import {
 } from "react-icons/fc";
 
 const Navbar = () => {
-    const { isAuth } = useAppData();
+    const { isAuth,city } = useAppData();
     const currentLocation = useLocation();
     const isHomePage = currentLocation.pathname === '/';
     const [searchParams, setSearchParams] = useSearchParams();
@@ -65,7 +65,7 @@ const Navbar = () => {
 
                         <div className="whitespace-nowrap font-medium text-gray-700">
 
-                            📍 Dhaka
+                            📍 {city}
 
                         </div>
 
@@ -100,9 +100,7 @@ const Navbar = () => {
                             Login
 
                         </button>
-
                     )}
-
                 </div>
 
             </div>
