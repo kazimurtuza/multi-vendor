@@ -9,8 +9,6 @@ router.post("/upload",async(req,res)=>{
         res.json({
             url:cloud.secure_url,
         })
-
-
     }
     catch(error:any){
         res.status(500).json({
