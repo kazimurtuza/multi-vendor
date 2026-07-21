@@ -58,7 +58,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
                         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
                     );
 
-                    console.log("res", res)
+                    console.log("location data ", res)
 
                     if (!res.ok) {
                         throw new Error(`HTTP Error: ${res.status}`);
@@ -66,7 +66,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
                     const data = await res.json();
 
-                    
+
                     setLocation({
                         latitude,
                         longitude,

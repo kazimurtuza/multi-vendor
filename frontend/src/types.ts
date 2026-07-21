@@ -1,29 +1,55 @@
 import type React from "react";
 
-export interface User{
+export interface User {
     _id: string;
-    name:string;
-    email:string;
-    image:string;
+    name: string;
+    email: string;
+    image: string;
     role: string;
 }
 
-export interface LocationData{
+export interface IRestaurant {
+    _id: string;
+    name: string;
+    description?: String;
+    image: string;
+    ownerId: string;
+    phone: number;
+    isVerified: boolean;
+    autoLocation: {
+        type: "Point";
+        coordinates: [number, number];  //[longitude,latitude]
+        formatedAddress: string;
+    }
+    isOpen: boolean;
+    createdAt: Date;
+}
+
+export interface LocationData {
     latitude: number;
     longitude: number;
     formattedAddress: string;
 }
 
-export interface AppContextType{
+export interface AppContextType {
     user: User | null;
     loading: boolean;
     isAuth: boolean;
     setUser: React.Dispatch<React.SetStateAction<User | null>>;
     setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-    location:LocationData | null;
-    loadingLocation:boolean;
-    city:string;
+    location: LocationData | null;
+    loadingLocation: boolean;
+    city: string;
+}
 
-
+export interface IMenuItem {
+    _id: string;
+    restaurantId: string;
+    description?: string;
+    price: number;
+    image?: string;
+    category?: string;
+    isAvailable: boolean;
+    createdAt: string;
 }

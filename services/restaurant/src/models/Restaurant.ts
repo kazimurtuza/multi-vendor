@@ -36,7 +36,7 @@ const schema = new Schema<IRestaurant>({
     },
     isVerified: {
         type: Boolean,
-        required: true,
+        default: false,
     },
     autoLocation: {
         type: {

@@ -1,9 +1,10 @@
 import express from "express";
-import { isAuth,isSeller } from "../middlewares/isAuth.js";
-import { addRestaurant } from "../controllers/restaurant.js";
+import { isAuth, isSeller } from "../middlewares/isAuth.js";
+import { addRestaurant, fatchMyRestaurant } from "../controllers/restaurant.js";
+import uploadFile from "../middlewares/multer.js";
 const router = express.Router();
 
-router.post("/ne",isAuth,isSeller,addRestaurant);
+router.post("/new", isAuth, isSeller, uploadFile, addRestaurant);
+router.get("/my", isAuth, isSeller, fatchMyRestaurant);
 export default router
-
 

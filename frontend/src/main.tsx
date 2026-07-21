@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 export const authService = "http://localhost:5001";
+export const restaurantService = "http://localhost:5002";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AppProvider } from './context/AppContext.tsx';
 createRoot(document.getElementById('root')!).render(
