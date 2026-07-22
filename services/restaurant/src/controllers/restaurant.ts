@@ -102,6 +102,80 @@ export const fatchMyRestaurant = TryCatch(async (req: AuthenticatedRequest, res)
         message: "Restaurant Found",
         restaurant,
     })
-
-
 });
+
+export const getNearByRestaurant = TryCatch(async (req: AuthenticatedRequest, res) => {
+    const { lat, lng, radius = 5000, search = "" } = req.query
+
+    if (!lat || !lng) {
+        return res.status(400).json({
+            message: "Please provide latitude and longitude",
+        });
+    }
+
+    const query: any = {
+        isVerified: true,
+    }
+
+    if (search && typeof search === "string") {
+        query.name = {
+            $regex: search,
+            $options: "i"
+        }
+    }
+
+    const restaurants = await Restaurant.aggregate([
+        {
+            $geoNear: {
+                near: {
+                    type: "Point",
+                    coordinates: [Number(lng), Number(lat)]
+                },
+                distanceField: "distance",
+                maxDistance: Number(radius),
+                spherical: true,
+                query: query,
+            }
+        }, {
+            $sort: {
+                isOpen: -1,
+                distance: 1
+            }
+        },
+        {
+            $addFields: {
+                distanceKm: {
+                    $round: [
+                        { $divide: ["$distance", 1000] },
+                        2
+                    ]
+                }
+            }
+        }
+    ])
+
+    return res.status(200).json({
+        message: "Restaurants found successfully",
+        restaurants,
+    })
+});
+
+export const singleRestaurant = TryCatch(async (req: AuthenticatedRequest, res) => {
+    const { id } = req.params
+    if (!id) {
+        return res.status(400).json({
+            message: "Please provide restaurant id",
+        })
+    }
+    const restaurant = await Restaurant.findById(id)
+    if (!restaurant) {
+        return res.status(404).json({
+            message: "Restaurant Not Found",
+        })
+    }
+    return res.status(200).json({
+        message: "Restaurant found successfully",
+        restaurant,
+    })
+})
+
