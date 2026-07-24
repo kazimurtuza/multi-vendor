@@ -16,6 +16,7 @@ const port = process.env.PORT || 5002;
 app.use("/api/restaurant", restaurantRoutes)
 app.use("/api/item", menuItemRoutes)
 
+
 app.listen(port, () => {
     console.log(`Restaurant service is running on port ${port}`);
     connectDB();

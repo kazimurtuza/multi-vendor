@@ -21,6 +21,7 @@ export interface IRestaurant {
         coordinates: [number, number];  //[longitude,latitude]
         formatedAddress: string;
     }
+    distanceKm: number;
     isOpen: boolean;
     createdAt: Date;
 }
